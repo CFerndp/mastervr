@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dry1ppa8mfjfk"]
+
+[ext_resource type="Script" path="res://scenes/VR/Vr.cs" id="1_h5353"]
+[ext_resource type="PackedScene" uid="uid://wfj73b2o47oc" path="res://experiments/p300/P300.tscn" id="1_uhuhf"]
+[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="3_nc4o2"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="4_v4s33"]
+
+[node name="Vr" type="Node3D"]
+script = ExtResource("1_h5353")
+
+[node name="P300" parent="." instance=ExtResource("1_uhuhf")]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("3_nc4o2")]
+
+[node name="XRSimulator (DELETE)" parent="XROrigin3D" instance=ExtResource("4_v4s33")]

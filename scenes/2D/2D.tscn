@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt1yywyjrt8o4"]
+
+[ext_resource type="PackedScene" uid="uid://wfj73b2o47oc" path="res://experiments/p300/P300.tscn" id="1_4677g"]
+
+[node name="2d" type="Node3D"]
+
+[node name="P300" parent="." instance=ExtResource("1_4677g")]
+
+[node name="Camera3D" type="Camera3D" parent="."]

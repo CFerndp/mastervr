@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="VRBCI3000"
+config/version="1"
+run/main_scene="res://scenes/Main/Main.tscn"
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.0598891, 0.098046, 0.358304, 1)
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=3
+window/size/initial_position_type=3
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="VRBCI3000"
+
+[filesystem]
+
+import/blender/enabled=false
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[xr]
+
+openxr/enabled=true
+openxr/startup_alert=false
+shaders/enabled=true
