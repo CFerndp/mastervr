@@ -16,23 +16,23 @@ public partial class Main : Control
 		exitButton.Pressed += OnExitButtonPressed;
 	}
 
-    private void OnVRButtonPressed()
-    {
-        GetTree().ChangeSceneToFile("res://scenes/VR/VR.tscn");
-    }
+	private void OnVRButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://scenes/VR/VR.tscn");
+	}
 
 	private void On2DButtonPressed()
-    {
+	{
 		GetTree().ChangeSceneToFile("res://scenes/2D/2D.tscn");
-    }
+	}
 
 	private void OnExitButtonPressed()
 	{
 		GetTree().Quit();
 	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
 	{
 	}
 }
