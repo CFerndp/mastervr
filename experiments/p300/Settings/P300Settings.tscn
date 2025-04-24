@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn1yuny7se1q8"]
+[gd_scene load_steps=5 format=3 uid="uid://bn1yuny7se1q8"]
 
+[ext_resource type="Script" uid="uid://bqwqtc6qw8yko" path="res://experiments/p300/Settings/scripts/P300Settings.cs" id="1_jj0nv"]
 [ext_resource type="StyleBox" uid="uid://dwgacww6fqll" path="res://resources/styles/MainPanel.tres" id="1_kwada"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1sq7f"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jj0nv")
 
 [node name="MainPanel" type="Panel" parent="."]
 clip_contents = true
@@ -103,9 +105,9 @@ clear_button_enabled = true
 layout_mode = 2
 vertical = true
 
-[node name="CheckButton" type="CheckButton" parent="MainPanel/MarginContainer/GridContainer/Content/VR"]
+[node name="CheckVR" type="CheckBox" parent="MainPanel/MarginContainer/GridContainer/Content/VR"]
 layout_mode = 2
-text = "Execute on VR:"
+text = "VR Enabled"
 
 [node name="FooterButtons" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
 layout_mode = 2
