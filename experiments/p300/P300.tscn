@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://wfj73b2o47oc"]
+[gd_scene load_steps=7 format=3 uid="uid://wfj73b2o47oc"]
 
+[ext_resource type="Script" uid="uid://cjkldsnca21el" path="res://experiments/p300/scripts/P300.cs" id="1_6bxq8"]
 [ext_resource type="Script" uid="uid://cellfncdp3585" path="res://experiments/p300/scripts/p300Text.cs" id="1_lwrbo"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ef20o"]
@@ -21,6 +22,7 @@ sky = SubResource("Sky_tvvul")
 sky_custom_fov = 43.0
 
 [node name="P300" type="Node3D"]
+script = ExtResource("1_6bxq8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53701, 30.1989, -52.3954)

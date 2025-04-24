@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn1yuny7se1q8"]
+[gd_scene load_steps=6 format=3 uid="uid://bn1yuny7se1q8"]
 
 [ext_resource type="Script" uid="uid://bqwqtc6qw8yko" path="res://experiments/p300/settings/scripts/P300Settings.cs" id="1_jj0nv"]
 [ext_resource type="StyleBox" uid="uid://dwgacww6fqll" path="res://resources/styles/MainPanel.tres" id="1_kwada"]
@@ -8,6 +8,11 @@ font_size = 60
 shadow_size = 15
 
 [sub_resource type="Theme" id="Theme_pxo7c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mwoc"]
+font_size = 10
+outline_size = 1
+shadow_size = 3
 
 [node name="P300Settings" type="Control"]
 layout_mode = 3
@@ -113,6 +118,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 theme = SubResource("Theme_pxo7c")
 theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/GridContainer/FooterButtons"]
+layout_mode = 2
+text = "Press ESC during experiment to cancel it"
+label_settings = SubResource("LabelSettings_4mwoc")
 
 [node name="StartButton" type="Button" parent="MainPanel/MarginContainer/GridContainer/FooterButtons"]
 layout_mode = 2

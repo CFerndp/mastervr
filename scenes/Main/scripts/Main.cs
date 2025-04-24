@@ -12,7 +12,7 @@ public partial class Main : Control
 	{
 		BoxContainer experimentsPanel = GetNode<BoxContainer>("MainPanel/MarginContainer/GridContainer/Experiments");
 
-		foreach (var experiment in ExperimentRouter.Routes){
+		foreach (var experiment in ExperimentRouter.MainRoutes){
 			Button button = new Button();
 			button.Text = experiment.Key;
 			button.Pressed += () => GetTree().ChangeSceneToFile(experiment.Value);
