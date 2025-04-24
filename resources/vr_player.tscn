@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cshcpj8ij5avr"]
 
-[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_agkv0"]
+[ext_resource type="PackedScene" uid="uid://c1tljnrdxgqaj" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_agkv0"]
 
 [node name="VRPlayer" type="Node3D"]
 
