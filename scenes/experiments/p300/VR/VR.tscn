@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dry1ppa8mfjfk"]
+
+[ext_resource type="Script" uid="uid://bl2bt776m4hq4" path="res://resources/nodes/containers/VRNode/VRNode.cs" id="1_cq7rc"]
+[ext_resource type="PackedScene" uid="uid://wfj73b2o47oc" path="res://experiments/p300/P300.tscn" id="1_uhuhf"]
+[ext_resource type="PackedScene" uid="uid://cshcpj8ij5avr" path="res://resources/nodes/players/VRPlayer/vr_player.tscn" id="3_7f8h4"]
+
+[node name="VR" type="Node3D"]
+script = ExtResource("1_cq7rc")
+
+[node name="P300" parent="." instance=ExtResource("1_uhuhf")]
+
+[node name="VRPlayer" parent="." instance=ExtResource("3_7f8h4")]

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Vr : Node3D
+public partial class VRNode : Node3D
 {
 	private XRInterface _xrInterface;
 	

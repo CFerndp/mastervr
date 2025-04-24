@@ -1,29 +1,28 @@
 using Godot;
 using System;
+using ExperimentConstants;
 
 public partial class Main : Control
 {
 	// Called when the node enters the scene tree for the first time.
+	/// <summary>
+	/// Called when the node is ready, i.e. when it's children and resources are fully loaded.
+	/// </summary>
 	public override void _Ready()
 	{
-		Button sdButton = GetNode<Button>("MainPanel/MarginContainer/VBoxContainer3/VBoxContainer/2DP300Button");
-		Button vrButton = GetNode<Button>("MainPanel/MarginContainer/VBoxContainer3/VBoxContainer/3DP300Button");
-		Button exitButton = GetNode<Button>("MainPanel/MarginContainer/VBoxContainer3/VBoxContainer2/ExitButton");
+		BoxContainer experimentsPanel = GetNode<BoxContainer>("MainPanel/MarginContainer/GridContainer/Experiments");
+
+		foreach (var experiment in ExperimentRouter.Routes){
+			Button button = new Button();
+			button.Text = experiment.Key;
+			button.Pressed += () => GetTree().ChangeSceneToFile(experiment.Value);
+			experimentsPanel.AddChild(button);
+		}
+
+		Button exitButton = GetNode<Button>("MainPanel/MarginContainer/GridContainer/Footer/ExitButton");
 		
 
-		sdButton.Pressed += On2DButtonPressed;
-		vrButton.Pressed += OnVRButtonPressed;
 		exitButton.Pressed += OnExitButtonPressed;
-	}
-
-	private void OnVRButtonPressed()
-	{
-		GetTree().ChangeSceneToFile("res://scenes/VR/VR.tscn");
-	}
-
-	private void On2DButtonPressed()
-	{
-		GetTree().ChangeSceneToFile("res://scenes/2D/2D.tscn");
 	}
 
 	private void OnExitButtonPressed()

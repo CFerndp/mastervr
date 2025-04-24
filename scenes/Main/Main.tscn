@@ -1,19 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://xhy5rr7npl7y"]
+[gd_scene load_steps=6 format=3 uid="uid://xhy5rr7npl7y"]
 
 [ext_resource type="Script" uid="uid://db0dxv4pkrh7j" path="res://scenes/Main/scripts/Main.cs" id="1_6txu4"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_hfakb"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqvy2"]
-texture = SubResource("CanvasTexture_hfakb")
-modulate_color = Color(0.342095, 0.441093, 0.711987, 1)
+[ext_resource type="StyleBox" uid="uid://dwgacww6fqll" path="res://resources/styles/MainPanel.tres" id="2_owiiy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r8ma1"]
 font_size = 60
 shadow_size = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkhmq"]
-font_size = 40
+font_size = 36
 
 [sub_resource type="Theme" id="Theme_puyea"]
 
@@ -38,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.998081, 1)
-theme_override_styles/panel = SubResource("StyleBoxTexture_nqvy2")
+theme_override_styles/panel = ExtResource("2_owiiy")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
 layout_mode = 1
@@ -52,59 +47,43 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MainPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MainPanel/MarginContainer/VBoxContainer3"]
+[node name="Header" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/GridContainer/Header"]
 layout_mode = 2
 text = "BCI 3000"
 label_settings = SubResource("LabelSettings_r8ma1")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator2" type="HSeparator" parent="MainPanel/MarginContainer/VBoxContainer3"]
+[node name="HSeparator2" type="HSeparator" parent="MainPanel/MarginContainer/GridContainer/Header"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer3"]
+[node name="Experiments" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/GridContainer/Experiments"]
 layout_mode = 2
-text = "P300 Experiment
+text = "Experiments
 "
 label_settings = SubResource("LabelSettings_jkhmq")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="2DP300Button" type="Button" parent="MainPanel/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="Footer" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "2D"
-
-[node name="3DP300Button" type="Button" parent="MainPanel/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "3D"
-
-[node name="HSeparator" type="HSeparator" parent="MainPanel/MarginContainer/VBoxContainer3"]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer3"]
-layout_mode = 2
 theme = SubResource("Theme_puyea")
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MainPanel/MarginContainer/VBoxContainer3/VBoxContainer2"]
+[node name="ExitButton" type="Button" parent="MainPanel/MarginContainer/GridContainer/Footer"]
 layout_mode = 2
-text = "Settings
-"
-label_settings = SubResource("LabelSettings_jkhmq")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="ExitButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer3/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 8
 text = "EXIT"

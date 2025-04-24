@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn1yuny7se1q8"]
+
+[ext_resource type="StyleBox" uid="uid://dwgacww6fqll" path="res://resources/styles/MainPanel.tres" id="1_kwada"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1sq7f"]
+font_size = 60
+shadow_size = 15
+
+[sub_resource type="Theme" id="Theme_pxo7c"]
+
+[node name="P300Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.998081, 1)
+theme_override_styles/panel = ExtResource("1_kwada")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/v_separation = 50
+
+[node name="Header" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="MainPanel/MarginContainer/GridContainer/Header"]
+layout_mode = 2
+text = "Experiment Settings"
+label_settings = SubResource("LabelSettings_1sq7f")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="MainPanel/MarginContainer/GridContainer/Header"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 8.37
+
+[node name="Content" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_pxo7c")
+theme_override_constants/separation = 10
+
+[node name="Stimulus" type="BoxContainer" parent="MainPanel/MarginContainer/GridContainer/Content"]
+layout_mode = 2
+vertical = true
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/GridContainer/Content/Stimulus"]
+layout_mode = 2
+text = "Max number of elements (from 1 to max):"
+
+[node name="LineEdit" type="LineEdit" parent="MainPanel/MarginContainer/GridContainer/Content/Stimulus"]
+layout_mode = 2
+text = "6"
+placeholder_text = "Set max number"
+virtual_keyboard_type = 2
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Trials" type="BoxContainer" parent="MainPanel/MarginContainer/GridContainer/Content"]
+layout_mode = 2
+vertical = true
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/GridContainer/Content/Trials"]
+layout_mode = 2
+text = "Number of trials"
+
+[node name="LineEdit" type="LineEdit" parent="MainPanel/MarginContainer/GridContainer/Content/Trials"]
+layout_mode = 2
+text = "20"
+placeholder_text = "Set number of trials"
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="VR" type="BoxContainer" parent="MainPanel/MarginContainer/GridContainer/Content"]
+layout_mode = 2
+vertical = true
+
+[node name="CheckButton" type="CheckButton" parent="MainPanel/MarginContainer/GridContainer/Content/VR"]
+layout_mode = 2
+text = "Execute on VR:"
+
+[node name="FooterButtons" type="VBoxContainer" parent="MainPanel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme = SubResource("Theme_pxo7c")
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="MainPanel/MarginContainer/GridContainer/FooterButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "START"
+
+[node name="BackButton" type="Button" parent="MainPanel/MarginContainer/GridContainer/FooterButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "BACK"
