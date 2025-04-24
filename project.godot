@@ -13,7 +13,7 @@ config_version=5
 config/name="VRBCI3000"
 config/version="1"
 run/main_scene="res://scenes/Main/Main.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.0598891, 0.098046, 0.358304, 1)
 config/icon="res://icon.svg"
 
