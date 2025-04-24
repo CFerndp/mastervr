@@ -4,6 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Chickensoft.Introspection.Generator" Version="3.0.0" />
     <PackageReference Include="Chickensoft.LogicBlocks" Version="5.18.0" />
     <PackageReference Include="Chickensoft.LogicBlocks.DiagramGenerator" Version="5.12.0" />
     <PackageReference Include="SharpLSL" Version="0.0.10" />
