@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0.0598891, 0.098046, 0.358304, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+P300SettingsAutoload="*res://experiments/p300/autoloads/P300SettingsAutoload.cs"
+
 [display]
 
 window/size/mode=3

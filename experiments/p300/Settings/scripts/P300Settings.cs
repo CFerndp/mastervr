@@ -14,17 +14,29 @@ public partial class P300Settings : Control
 
         backButton.Pressed += OnBackButtonPressed;
         startButton.Pressed += OnStartButtonPressed;
-    }
 
+        var numberOfTrials = GetNode<LineEdit>("MainPanel/MarginContainer/GridContainer/Content/Trials/LineEdit");
+        numberOfTrials.Text = P300SettingsAutoload.Instance.numberOfTrials.ToString();
+        numberOfTrials.TextChanged += (value) => {
+            P300SettingsAutoload.Instance.numberOfTrials = int.Parse(value);
+        };
+        
+        var numberOfStimuli = GetNode<LineEdit>("MainPanel/MarginContainer/GridContainer/Content/Stimulus/LineEdit");
+        numberOfStimuli.Text = P300SettingsAutoload.Instance.numberOfStimuli.ToString();
+        numberOfStimuli.TextChanged += (value) => {
+            P300SettingsAutoload.Instance.numberOfStimuli = int.Parse(value);
+        };        
+    }
+    
     private void OnBackButtonPressed()
     {
-        GetTree().ChangeSceneToFile("res://scenes/Main.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/Main/Main.tscn");
     }
 
     private void OnStartButtonPressed()
     {
         var vrEnabled = vrEnabledCheck.IsPressed();
-
+        
         if(vrEnabled){
             GetTree().ChangeSceneToFile("res://scenes/experiments/p300/VR/VR.tscn");
         } else {

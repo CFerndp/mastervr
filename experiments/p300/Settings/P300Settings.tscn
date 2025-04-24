@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bn1yuny7se1q8"]
 
-[ext_resource type="Script" uid="uid://bqwqtc6qw8yko" path="res://experiments/p300/Settings/scripts/P300Settings.cs" id="1_jj0nv"]
+[ext_resource type="Script" uid="uid://bqwqtc6qw8yko" path="res://experiments/p300/settings/scripts/P300Settings.cs" id="1_jj0nv"]
 [ext_resource type="StyleBox" uid="uid://dwgacww6fqll" path="res://resources/styles/MainPanel.tres" id="1_kwada"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1sq7f"]
@@ -80,7 +80,6 @@ text = "Max number of elements (from 1 to max):"
 
 [node name="LineEdit" type="LineEdit" parent="MainPanel/MarginContainer/GridContainer/Content/Stimulus"]
 layout_mode = 2
-text = "6"
 placeholder_text = "Set max number"
 virtual_keyboard_type = 2
 clear_button_enabled = true
@@ -96,7 +95,6 @@ text = "Number of trials"
 
 [node name="LineEdit" type="LineEdit" parent="MainPanel/MarginContainer/GridContainer/Content/Trials"]
 layout_mode = 2
-text = "20"
 placeholder_text = "Set number of trials"
 virtual_keyboard_type = 2
 clear_button_enabled = true
