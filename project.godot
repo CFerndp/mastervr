@@ -31,6 +31,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="VRBCI3000"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

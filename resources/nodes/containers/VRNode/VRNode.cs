@@ -3,11 +3,18 @@ using System;
 
 public partial class VRNode : Node3D
 {
+    [Export]
+    public bool emulateVR = false;
+
 	private XRInterface _xrInterface;
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+
+       
+        var xrSimulator = GetNode("XRSimulator");
+        xrSimulator.Set("enabled", emulateVR);
+
 		_xrInterface = XRServer.FindInterface("OpenXR");
         if(_xrInterface != null && _xrInterface.IsInitialized())
         {
