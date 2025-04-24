@@ -1,0 +1,11 @@
+@startuml ExperimentState
+state "ExperimentState State" as ExperimentState_State {
+  state "Instructions" as ExperimentState_State_Instructions
+  state "Running" as ExperimentState_State_Running
+  state "End" as ExperimentState_State_End
+}
+
+ExperimentState_State_Instructions --> ExperimentState_State_Running : StartExperiment
+ExperimentState_State_Running --> ExperimentState_State_End : EndExperiment
+[*] --> ExperimentState_State_Instructions
+@enduml
