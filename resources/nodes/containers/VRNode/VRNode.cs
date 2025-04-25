@@ -27,6 +27,13 @@ public partial class VRNode : Node3D
         }
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        GetViewport().UseXR = false;
+        _xrInterface = null;
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {

@@ -7,6 +7,7 @@
 [node name="VrNode" type="Node3D"]
 script = ExtResource("1_h4tw8")
 
-[node name="XRSimulator" parent="." instance=ExtResource("2_g3qhg")]
+[node name="VRPlayer" parent="." instance=ExtResource("3_vwln1")]
 
-[node name="VRPlayer" parent="XRSimulator" instance=ExtResource("3_vwln1")]
+[node name="XRSimulator" parent="." instance=ExtResource("2_g3qhg")]
+enabled = false
