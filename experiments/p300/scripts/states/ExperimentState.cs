@@ -49,6 +49,7 @@ public partial class ExperimentState : LogicBlock<ExperimentState.State>
      public static class Input
      {
           public readonly record struct StartExperiment;
+          public readonly record struct Setup(ExperimentData experimentData);
           public readonly record struct EndExperiment;
           public readonly record struct TimerEnd;
      }
@@ -59,29 +60,45 @@ public partial class ExperimentState : LogicBlock<ExperimentState.State>
      public abstract partial record State : StateLogic<State>
      {
 
-          private void _GenerateNextStimuli()
+          private void _InitStimuliArray()
           {
                var experimentData = Get<ExperimentData>();
+               var runningData = Get<RunningData>();
+
+               runningData.stimuliArray = P300Utils.GenerateStimuliArray(experimentData.numberOfStimuli);
+          }
+
+          private void _GenerateNextStimuli()
+          {
                var runningData = Get<RunningData>();
 
                // Get the array of stimuli
                var stimuliArray = runningData.stimuliArray;
 
-               // If array finished, trial finished. Go to next trial 
-               if (stimuliArray.Count == 0)
-               {
-                    stimuliArray = P300Utils.GenerateStimuliArray(experimentData.numberOfStimuli);
-                    runningData.stimuliArray = stimuliArray;
-                    runningData.runningTrial++;
-               }
-
                // Get the first stimulus from the array and remove it from the array
                runningData.currentStimulus = stimuliArray[0];
                runningData.stimuliArray.RemoveAt(0);
+
+               // If array finished, trial finished. Go to next trial 
+               if (stimuliArray.Count == 0)
+               {
+                    _InitStimuliArray();
+                    runningData.runningTrial++;
+               }
           }
 
-          public record Instructions : State, IGet<Input.StartExperiment>
+          public record Instructions : State, IGet<Input.StartExperiment>, IGet<Input.Setup>
           {
+               public Transition On(in Input.Setup input)
+               {
+                    Get<ExperimentData>().numberOfTrials = input.experimentData.numberOfTrials;
+                    Get<ExperimentData>().numberOfStimuli = input.experimentData.numberOfStimuli;
+
+                    _InitStimuliArray();
+
+                    return ToSelf();
+               }
+
                public Transition On(in Input.StartExperiment input)
                {
                     _GenerateNextStimuli();
@@ -99,10 +116,8 @@ public partial class ExperimentState : LogicBlock<ExperimentState.State>
                     var experimentData = Get<ExperimentData>();
                     var runningData = Get<RunningData>();
 
-
-
                     // If all trials have been completed, go to end
-                    if (runningData.runningTrial > experimentData.numberOfTrials - 1)
+                    if (runningData.runningTrial >= experimentData.numberOfTrials)
                     {
                          return To<End>();
                     }

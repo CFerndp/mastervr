@@ -8,14 +8,13 @@ public class MockBCIPort : IBCIPort
     {
         GD.Print($"MockBCIPort: SendEvent {evnt}");
     }
-
-    public void Start()
+    public void Start(int? evnt)
     {
-        GD.Print("MockBCIPort: Start");
+        GD.Print($"MockBCIPort: Start {evnt}");
+    }
+    public void Stop(int? evnt)
+    {
+        GD.Print($"MockBCIPort: Stop {evnt}");
     }
 
-    public void Stop()
-    {
-        GD.Print("MockBCIPort: Stop");
-    }
 }

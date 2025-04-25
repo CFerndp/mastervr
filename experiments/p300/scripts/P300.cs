@@ -13,6 +13,7 @@ public partial class P300 : Node3D
     {
         var showTimer = GetNode<Timer>("TimerShow");
         var hideTimer = GetNode<Timer>("TimerHide");
+        var stimulus = 0;
 
         port = P300PortAutoload.Instance.Port;
 
@@ -20,40 +21,44 @@ public partial class P300 : Node3D
         hideTimer.Timeout += OnTimerTimeout;
 
         var numberLabel = GetNode<Label3D>("Label3D");
-        numberLabel.Text = "How many times appears target number?";
+        numberLabel.Text = $"How many times appears the number {P300SettingsAutoload.Instance.TargetNumber}?";
 
         experimentState = new ExperimentState();
-        experimentState.Get<ExperimentState.ExperimentData>().numberOfTrials = P300SettingsAutoload.Instance.numberOfTrials;
-        experimentState.Get<ExperimentState.ExperimentData>().numberOfStimuli = P300SettingsAutoload.Instance.numberOfStimuli;
-
-
         binding = experimentState.Bind();
 
         binding.Handle((in ExperimentState.Output.NumberSwitched output) =>
         {
-            numberLabel.Text = output.stimulus.HasValue ? output.stimulus.Value.ToString() : "";
+            stimulus = output.stimulus ?? 0;
+            numberLabel.Text = stimulus.ToString();
         });
 
 
         binding.When((ExperimentState.State.Running.ShowNumber _) =>
         {
+
+            port.SendEvent((int)P300Markers.ShowNumber + stimulus);
             showTimer.Start();
-            port.SendEvent((int)P300Markers.ShowNumber);
         });
 
         binding.When((ExperimentState.State.Running.HideNumber _) =>
         {
+            port.SendEvent((int)P300Markers.HideNumber + stimulus);
             hideTimer.Start();
-            port.SendEvent((int)P300Markers.HideNumber);
         });
 
         binding.When((ExperimentState.State.End _) =>
         {
             numberLabel.Text = "Thanks";
-            port.Stop();
+            port.Stop(null);
         });
 
         experimentState.Start();
+        experimentState.Input(new ExperimentState.Input.Setup(new ExperimentState.ExperimentData()
+        {
+            numberOfTrials = P300SettingsAutoload.Instance.NumberOfTrials,
+            numberOfStimuli = P300SettingsAutoload.Instance.NumberOfStimuli
+        }));
+
     }
 
     private void OnTimerTimeout()
@@ -74,7 +79,7 @@ public partial class P300 : Node3D
 
             if (status is ExperimentState.State.Instructions)
             {
-                port.Start();
+                port.Start(P300SettingsAutoload.Instance.TargetNumber);
                 experimentState.Input(new ExperimentState.Input.StartExperiment());
             }
             else if (status is ExperimentState.State.Running)

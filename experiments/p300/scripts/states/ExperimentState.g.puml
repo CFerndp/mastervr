@@ -8,6 +8,7 @@ state "ExperimentState State" as ExperimentState_State {
   state "End" as ExperimentState_State_End
 }
 
+ExperimentState_State_Instructions --> ExperimentState_State_Instructions : Setup
 ExperimentState_State_Instructions --> ExperimentState_State_Running_ShowNumber : StartExperiment
 ExperimentState_State_Running --> ExperimentState_State_End : EndExperiment
 ExperimentState_State_Running --> ExperimentState_State_End : TimerEnd

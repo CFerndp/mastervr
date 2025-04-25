@@ -27,13 +27,12 @@ public class LSLBCIPort : IBCIPort
         this._SendData(evnt);
     }
 
-    public void Start()
+    public void Start(int? evnt)
     {
-        this._SendData((int)MarkerBasics.Start);
+        this._SendData(evnt ?? (int)MarkerBasics.Start);
     }
-
-    public void Stop()
+    public void Stop(int? evnt)
     {
-        this._SendData((int)MarkerBasics.Stop);
+        this._SendData(evnt ?? (int)MarkerBasics.Stop);
     }
 }
