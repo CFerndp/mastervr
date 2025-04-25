@@ -28,5 +28,5 @@ public static class P300Utils
 public enum P300Markers
 {
     ShowNumber = 10,
-    HideNumber = 11,
+    HideNumber = 20,
 }
