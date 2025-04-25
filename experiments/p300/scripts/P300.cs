@@ -7,10 +7,14 @@ public partial class P300 : Node3D
     private ExperimentState experimentState;
     private LogicBlock<ExperimentState.State>.IBinding binding;
 
+    private IBCIPort port;
+
     public override void _Ready()
     {
         var showTimer = GetNode<Timer>("TimerShow");
         var hideTimer = GetNode<Timer>("TimerHide");
+
+        port = P300PortAutoload.Instance.Port;
 
         showTimer.Timeout += OnTimerTimeout;
         hideTimer.Timeout += OnTimerTimeout;
@@ -27,23 +31,26 @@ public partial class P300 : Node3D
 
         binding.Handle((in ExperimentState.Output.NumberSwitched output) =>
         {
-
             numberLabel.Text = output.stimulus.HasValue ? output.stimulus.Value.ToString() : "";
         });
+
 
         binding.When((ExperimentState.State.Running.ShowNumber _) =>
         {
             showTimer.Start();
+            port.SendEvent((int)P300Markers.ShowNumber);
         });
 
         binding.When((ExperimentState.State.Running.HideNumber _) =>
         {
             hideTimer.Start();
+            port.SendEvent((int)P300Markers.HideNumber);
         });
 
         binding.When((ExperimentState.State.End _) =>
         {
             numberLabel.Text = "Thanks";
+            port.Stop();
         });
 
         experimentState.Start();
@@ -67,6 +74,7 @@ public partial class P300 : Node3D
 
             if (status is ExperimentState.State.Instructions)
             {
+                port.Start();
                 experimentState.Input(new ExperimentState.Input.StartExperiment());
             }
             else if (status is ExperimentState.State.Running)

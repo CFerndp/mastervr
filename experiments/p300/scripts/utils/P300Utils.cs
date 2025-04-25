@@ -24,3 +24,9 @@ public static class P300Utils
         return list;
     }
 }
+
+public enum P300Markers
+{
+    ShowNumber = 10,
+    HideNumber = 11,
+}
