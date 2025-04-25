@@ -102,7 +102,7 @@ public partial class ExperimentState : LogicBlock<ExperimentState.State>
 
 
                     // If all trials have been completed, go to end
-                    if (runningData.runningTrial >= experimentData.numberOfTrials - 1)
+                    if (runningData.runningTrial > experimentData.numberOfTrials - 1)
                     {
                          return To<End>();
                     }
