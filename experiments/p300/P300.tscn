@@ -43,9 +43,9 @@ font_size = 25
 width = 250.0
 
 [node name="TimerShow" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 
 [node name="TimerHide" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true

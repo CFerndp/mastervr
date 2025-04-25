@@ -28,14 +28,17 @@ public partial class P300 : Node3D
 
         binding.Handle((in ExperimentState.Output.NumberSwitched output) =>
         {
-            stimulus = output.stimulus ?? 0;
-            numberLabel.Text = stimulus.ToString();
+            if (output.stimulus.HasValue)
+            {
+                stimulus = output.stimulus.Value;
+            }
+
+            numberLabel.Text = output.stimulus.ToString();
         });
 
 
         binding.When((ExperimentState.State.Running.ShowNumber _) =>
         {
-
             port.SendEvent((int)P300Markers.ShowNumber + stimulus);
             showTimer.Start();
         });

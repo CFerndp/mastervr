@@ -8,6 +8,5 @@
 script = ExtResource("1_cq7rc")
 
 [node name="VrNode" parent="." instance=ExtResource("2_yxknt")]
-emulateVR = true
 
 [node name="P300" parent="VrNode" instance=ExtResource("1_uhuhf")]
