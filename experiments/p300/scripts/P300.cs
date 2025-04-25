@@ -9,22 +9,49 @@ public partial class P300 : Node3D
 
     public override void _Ready()
     {
+        var showTimer = GetNode<Timer>("TimerShow");
+        var hideTimer = GetNode<Timer>("TimerHide");
+
+        showTimer.Timeout += OnTimerTimeout;
+        hideTimer.Timeout += OnTimerTimeout;
+
         var numberLabel = GetNode<Label3D>("Label3D");
         numberLabel.Text = "How many times appears target number?";
 
         experimentState = new ExperimentState();
+        experimentState.Get<ExperimentState.ExperimentData>().numberOfTrials = P300SettingsAutoload.Instance.numberOfTrials;
+        experimentState.Get<ExperimentState.ExperimentData>().numberOfStimuli = P300SettingsAutoload.Instance.numberOfStimuli;
+
 
         binding = experimentState.Bind();
 
-        binding.When((ExperimentState.State.Running _) => {
-            numberLabel.Text = "Running...";
+        binding.Handle((in ExperimentState.Output.NumberSwitched output) =>
+        {
+
+            numberLabel.Text = output.stimulus.HasValue ? output.stimulus.Value.ToString() : "";
         });
 
-        binding.When((ExperimentState.State.End _) => {
+        binding.When((ExperimentState.State.Running.ShowNumber _) =>
+        {
+            showTimer.Start();
+        });
+
+        binding.When((ExperimentState.State.Running.HideNumber _) =>
+        {
+            hideTimer.Start();
+        });
+
+        binding.When((ExperimentState.State.End _) =>
+        {
             numberLabel.Text = "Thanks";
         });
 
         experimentState.Start();
+    }
+
+    private void OnTimerTimeout()
+    {
+        experimentState.Input(new ExperimentState.Input.TimerEnd());
     }
 
     public override void _Process(double delta)
@@ -38,9 +65,12 @@ public partial class P300 : Node3D
         {
             var status = experimentState.Value;
 
-            if(status is ExperimentState.State.Instructions) {
+            if (status is ExperimentState.State.Instructions)
+            {
                 experimentState.Input(new ExperimentState.Input.StartExperiment());
-            } else if (status is ExperimentState.State.Running) {
+            }
+            else if (status is ExperimentState.State.Running)
+            {
                 experimentState.Input(new ExperimentState.Input.EndExperiment());
             }
         }

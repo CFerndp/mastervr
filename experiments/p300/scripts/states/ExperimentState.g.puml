@@ -1,11 +1,22 @@
 @startuml ExperimentState
 state "ExperimentState State" as ExperimentState_State {
   state "Instructions" as ExperimentState_State_Instructions
-  state "Running" as ExperimentState_State_Running
+  state "Running" as ExperimentState_State_Running {
+    state "ShowNumber" as ExperimentState_State_Running_ShowNumber
+    state "HideNumber" as ExperimentState_State_Running_HideNumber
+  }
   state "End" as ExperimentState_State_End
 }
 
-ExperimentState_State_Instructions --> ExperimentState_State_Running : StartExperiment
+ExperimentState_State_Instructions --> ExperimentState_State_Running_ShowNumber : StartExperiment
 ExperimentState_State_Running --> ExperimentState_State_End : EndExperiment
+ExperimentState_State_Running --> ExperimentState_State_End : TimerEnd
+ExperimentState_State_Running --> ExperimentState_State_Running : TimerEnd
+ExperimentState_State_Running --> ExperimentState_State_Running_HideNumber : TimerEnd
+ExperimentState_State_Running --> ExperimentState_State_Running_ShowNumber : TimerEnd
+
+ExperimentState_State_Running_HideNumber : OnEnter → NumberSwitched
+ExperimentState_State_Running_ShowNumber : OnEnter → NumberSwitched
+
 [*] --> ExperimentState_State_Instructions
 @enduml
