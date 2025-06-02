@@ -7,8 +7,8 @@ public partial class P300PortAutoload : Node
     public override void _Ready()
     {
         // Dependency injection
-        Port = new LSLBCIPort();
-        // Port = new MockBCIPort();
+        // Port = new LSLBCIPort();
+        Port = new MockBCIPort();
         Instance = this;
     }
 }
